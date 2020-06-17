@@ -5,8 +5,9 @@ import com.ofek.rickandmortyexcercise.data.objects.RnMCharactersCallResponseDto;
 import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface RnMService {
-    @GET("character/?page={pagedId}")
-    Single<RnMCharactersCallResponseDto> loadCharactersList(@Path("pageId") int page);
+    @GET("character/")
+    Single<RnMCharactersCallResponseDto> loadCharactersList(@Query("page") int page);
 }

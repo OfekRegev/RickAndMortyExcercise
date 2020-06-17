@@ -33,6 +33,14 @@ public class CharactersListState {
         return new CopyBuilder(this);
     }
 
+    public boolean isLoading() {
+        return isLoading;
+    }
+
+    public boolean isRefreshing() {
+        return isRefreshing;
+    }
+
     public ImmutableList<UiCharacter> getCharacterObjs() {
         return characterObjs;
     }
@@ -62,7 +70,7 @@ public class CharactersListState {
 
         public CopyBuilder addCharacters(List<UiCharacter> characterObjs) {
             // creates a new immutable list from the last state list and the new added list
-            this.characterObjs = ImmutableList.<UiCharacter>builder().addAll(characterObjs).addAll(characterObjs).build();
+            this.characterObjs = ImmutableList.<UiCharacter>builder().addAll(this.characterObjs).addAll(characterObjs).build();
             return this;
         }
 

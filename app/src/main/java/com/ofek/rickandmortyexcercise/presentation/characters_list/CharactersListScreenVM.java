@@ -25,8 +25,8 @@ public class CharactersListScreenVM extends ViewModel {
     private final GetCharactersList getCharactersList;
     // stores all active streams, helps to terminate all streams when needed
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
-    private final MutableLiveData<CharactersListState> stateLiveData = new MutableLiveData<>();
-    private final MutableLiveData<PresentationError> errorLiveData = new MutableLiveData<>();
+    public final MutableLiveData<CharactersListState> stateLiveData = new MutableLiveData<>();
+    public final MutableLiveData<PresentationError> errorLiveData = new MutableLiveData<>();
     // the observing scheduler determines on which thread the callbacks runs on, usually will be the main thread. but also could be test scheduler and such...
     private final Scheduler observingScheduler;
     public CharactersListScreenVM(GetCharactersList getCharactersList, Scheduler observingScheduler) {
@@ -120,7 +120,7 @@ public class CharactersListScreenVM extends ViewModel {
                         compositeDisposable.add(d);
                         // starts refreshing state
                         CharactersListState.CopyBuilder newState = stateLiveData.getValue().getCopyBuilder()
-                                .setRefreshing(true);
+                                .setRefreshing(refresh);
                         stateLiveData.setValue(newState.build());
                     }
 
