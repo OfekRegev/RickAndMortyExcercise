@@ -19,7 +19,7 @@ public class GetCharactersList extends BaseSingleUseCase<PagingResult<List<Chara
 
     private static final String PAGE_KEY = "page";
     private final CharactersRepo charactersRepo;
-    protected GetCharactersList(SingleTransformer<PagingResult<List<CharacterObj>>, PagingResult<List<CharacterObj>>> transformer, CharactersRepo charactersRepo) {
+    public GetCharactersList(SingleTransformer<PagingResult<List<CharacterObj>>, PagingResult<List<CharacterObj>>> transformer, CharactersRepo charactersRepo) {
         super(transformer);
         this.charactersRepo = charactersRepo;
     }
