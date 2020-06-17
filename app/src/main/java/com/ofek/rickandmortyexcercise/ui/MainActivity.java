@@ -1,8 +1,10 @@
-package com.ofek.rickandmortyexcercise;
+package com.ofek.rickandmortyexcercise.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.ofek.rickandmortyexcercise.R;
 
 public class MainActivity extends AppCompatActivity {
 
