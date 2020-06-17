@@ -1,4 +1,4 @@
-package com.ofek.rickandmortyexcercise.presentation.common;
+package com.ofek.rickandmortyexcercise.presentation.common.errors;
 
 /**
  *
