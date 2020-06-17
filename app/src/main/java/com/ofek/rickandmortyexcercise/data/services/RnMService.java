@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface RnMService {
-    @GET("/character/?page={pagedId}")
+    @GET("character/?page={pagedId}")
     Single<RnMCharactersCallResponseDto> loadCharactersList(@Path("pageId") int page);
 }
