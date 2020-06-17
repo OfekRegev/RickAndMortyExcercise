@@ -22,7 +22,7 @@ public class GenericResponseError implements PresentationError {
         }
     }
 
-    interface GenericResponseErrorProtocol extends BasePresentationErrorHandler {
+    public interface GenericResponseErrorProtocol extends BasePresentationErrorHandler {
         void onGenericResponseError();
     }
 }

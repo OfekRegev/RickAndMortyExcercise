@@ -1,6 +1,8 @@
 package com.ofek.rickandmortyexcercise.ui.characters_screen;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,13 +21,15 @@ import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.ofek.rickandmortyexcercise.R;
 import com.ofek.rickandmortyexcercise.presentation.characters_list.CharactersListScreenVM;
 import com.ofek.rickandmortyexcercise.presentation.characters_list.CharactersListState;
+import com.ofek.rickandmortyexcercise.presentation.common.errors.GenericResponseError;
+import com.ofek.rickandmortyexcercise.presentation.common.errors.PresentationError;
 import com.ofek.rickandmortyexcercise.ui.di.GlobalDependencyProvider;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 
-public class CharactersListFragment extends Fragment {
+public class CharactersListFragment extends Fragment implements GenericResponseError.GenericResponseErrorProtocol {
     private CharactersListScreenVM.Factory vmFactory = GlobalDependencyProvider.getCharactersListVMFactory();
     private CharactersListScreenVM viewModel;
     private RecyclerView charactersRv;
@@ -45,7 +49,7 @@ public class CharactersListFragment extends Fragment {
         viewModel = new ViewModelProvider(getActivity(),vmFactory).get(CharactersListScreenVM.class);
         viewModel.stateLiveData.observe(this,this::onStateChanged);
         viewModel.loadFirstPage(false);
-
+        viewModel.errorLiveData.observe(this,presentationError -> presentationError.handle(this));
     }
 
 
@@ -87,5 +91,16 @@ public class CharactersListFragment extends Fragment {
             adapter.setUiCharacters(charactersListState.getCharacterObjs());
             adapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void onGenericResponseError() {
+        new AlertDialog.Builder(getContext())
+                .setTitle("Error!")
+                .setMessage("Sorry, characters list failed to load, please swipe up/down to try again")
+                .setCancelable(true)
+                .setNeutralButton("Ok", (dialog, which) -> {
+                    dialog.dismiss();
+                }).create().show();
     }
 }
