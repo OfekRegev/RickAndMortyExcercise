@@ -4,7 +4,7 @@ public class CharacterObj {
     private String name;
     private String species;
     private String gender;
-
+    private String imageUrl;
 
     public String getName() {
         return name;
@@ -28,5 +28,13 @@ public class CharacterObj {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

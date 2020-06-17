@@ -8,6 +8,15 @@ package com.ofek.rickandmortyexcercise.domain.objects;
 public class PagingResult<T> {
     private T result;
     private int page;
+    private int maxPage;
+
+    public int getMaxPage() {
+        return maxPage;
+    }
+
+    public void setMaxPage(int maxPage) {
+        this.maxPage = maxPage;
+    }
 
     public T getResult() {
         return result;
